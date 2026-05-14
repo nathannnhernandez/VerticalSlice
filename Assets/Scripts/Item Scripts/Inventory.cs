@@ -25,8 +25,11 @@ public class Inventory : MonoBehaviour
     public int heals;
     public int keys;
 
+    private Heals healsbro;
+
     void Start()
     {
         ammo = 0;
+        heals = 0;
     }
 }

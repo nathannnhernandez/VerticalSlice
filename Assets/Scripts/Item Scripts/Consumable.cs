@@ -19,13 +19,6 @@ public class Consumable : MonoBehaviour
     }
     
     //call in visual script playercontroller
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Use();
-        }
-    }
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject == player)
@@ -33,13 +26,6 @@ public class Consumable : MonoBehaviour
             Pickup();
         }
     }
-    /*void OnCollisionEnter(Collider other)
-    {
-        if (other == Collider.Consumable)
-        {
-            Pickup();
-        }
-    }*/
     public virtual void Pickup()
     {
         

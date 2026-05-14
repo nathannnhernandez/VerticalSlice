@@ -12,19 +12,13 @@ public class Heals : Consumable
     {
         healsInInventory = Inventory.Instance.heals;
 
+        healthManager = FindObjectOfType<HealthManager>();
+
         UIController.Instance.UpdateHealsCount(healsInInventory);
-    }
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            Use();
-        }
     }
     public override void Pickup()
     {
         healsInInventory += 1;
-        Inventory.Instance.heals = healsInInventory;
         Inventory.Instance.heals = healsInInventory;
 
         UIController.Instance.UpdateHealsCount(healsInInventory);
@@ -44,6 +38,4 @@ public class Heals : Consumable
             UIController.Instance.UpdateHPCount(healthManager.hp);
         }
     }
-
-    ///hello
 }
