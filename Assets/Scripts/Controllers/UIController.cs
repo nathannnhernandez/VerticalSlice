@@ -8,6 +8,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI ammoCount;
     [SerializeField] private TextMeshProUGUI healsCount;
     [SerializeField] private TextMeshProUGUI hpCount;
+    [SerializeField] private TextMeshProUGUI crosshair;
     public static UIController Instance { get; private set; }
 
     private void Awake()
@@ -36,4 +37,15 @@ public class UIController : MonoBehaviour
     {
         hpCount.text = "HP: " + currentHP.ToString();
     } 
+
+    public void ShowCrosshair()
+    {
+        crosshair.text = "+";
+        Debug.Log("show");
+    }
+    public void HideCrosshair()
+    {
+        crosshair.text = "";
+        Debug.Log("hide");
+    }
 }
