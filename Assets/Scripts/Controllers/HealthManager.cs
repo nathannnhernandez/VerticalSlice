@@ -14,6 +14,7 @@ public class HealthManager : MonoBehaviour
     void Start()
     {
         hp = maxHP;
+        UIController.Instance.UpdateHPCount(hp);
     }
     private void OnCollisionEnter(Collision other)
     {
@@ -21,7 +22,7 @@ public class HealthManager : MonoBehaviour
         {
             StartCoroutine(IFrames(iFramesLength));
             hp -= 1;
-            Debug.Log(hp);
+            UIController.Instance.UpdateHPCount(hp);
         }
     }
     IEnumerator IFrames(float delay)

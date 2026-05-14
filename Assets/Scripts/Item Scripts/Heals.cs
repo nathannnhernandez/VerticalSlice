@@ -11,7 +11,8 @@ public class Heals : Consumable
     void Start()
     {
         healsInInventory = Inventory.Instance.heals;
-        Debug.Log(healsInInventory);
+
+        UIController.Instance.UpdateHealsCount(healsInInventory);
     }
     void Update()
     {
@@ -25,7 +26,8 @@ public class Heals : Consumable
         healsInInventory += 1;
         Inventory.Instance.heals = healsInInventory;
         Inventory.Instance.heals = healsInInventory;
-        Debug.Log(healsInInventory);
+
+        UIController.Instance.UpdateHealsCount(healsInInventory);
 
         thisThing.SetActive(false);
     }
@@ -37,8 +39,9 @@ public class Heals : Consumable
             healthManager.hp += 1;
             healsInInventory -= 1;
             Inventory.Instance.heals = healsInInventory;
-            Debug.Log("heals " + healsInInventory);
-            Debug.Log(healthManager.hp);
+
+            UIController.Instance.UpdateHealsCount(healsInInventory);
+            UIController.Instance.UpdateHPCount(healthManager.hp);
         }
     }
 

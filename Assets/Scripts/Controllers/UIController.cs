@@ -6,6 +6,8 @@ using UnityEngine;
 public class UIController : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI ammoCount;
+    [SerializeField] private TextMeshProUGUI healsCount;
+    [SerializeField] private TextMeshProUGUI hpCount;
     public static UIController Instance { get; private set; }
 
     private void Awake()
@@ -24,4 +26,14 @@ public class UIController : MonoBehaviour
     {
         ammoCount.text = "Ammo: " + currentAmmo.ToString();
     }
+
+    public void UpdateHealsCount(int currentHeals)
+    {
+        healsCount.text = "Heals: " + currentHeals.ToString();
+    }
+
+    public void UpdateHPCount(int currentHP)
+    {
+        hpCount.text = "HP: " + currentHP.ToString();
+    } 
 }
