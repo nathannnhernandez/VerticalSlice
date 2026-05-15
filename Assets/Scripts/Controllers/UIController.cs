@@ -38,14 +38,5 @@ public class UIController : MonoBehaviour
         hpCount.text = "HP: " + currentHP.ToString();
     } 
 
-    public void ShowCrosshair()
-    {
-        crosshair.text = "+";
-        Debug.Log("show");
-    }
-    public void HideCrosshair()
-    {
-        crosshair.text = "";
-        Debug.Log("hide");
-    }
+
 }
