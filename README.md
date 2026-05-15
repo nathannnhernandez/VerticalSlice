@@ -23,7 +23,7 @@ Place the monster around the corner from the player
 Use gameobject.setactive to put the monster in the scene, setting it to true when the player picks up the ammo
 (I haven’t done this yet) play scary sound upon monster spawn
 
-
+### Other Answers
 Yes it did help me build my complicating feature for a few reasons. First, I thought my initial idea was pretty lame, and this activity allowed me to readjust my scope. Second, part of the process for creating my complicating feature was creating a NavMesh, which I did in class during the W5 activity, kickstarting the development for my complicating feature. If I were to do them again I would focus on making each small step very simple. I would rather have a lot of simple steps than a few complex steps.
 
 I bridged visual coding and C# in this milestone through my cross hair UI element. When the player is in the ADS state, the crosshair UI element is instantiated on screen, and when they enter movement, the UI element is destroyed. I made this work by creating a C# script that created and destroyed the UI element, but because my player controller existed in visual scripting, I had to reference these methods in my player state machine, where, upon transition, I would reference the crosshair script using a graph variable, then connect it to a node which called the relevant method.
