@@ -16,6 +16,7 @@ public class Monster : MonoBehaviour
     private float currentMonsterSpeed;
     private NavMeshHit hit;
     private RaycastHit rayHit;
+    private Animator animator;
     private enum MonsterStates
     {
         Chillin,
@@ -31,6 +32,8 @@ public class Monster : MonoBehaviour
     void Start()
     {
         currentState = MonsterStates.WalkThatBihDown;
+
+        animator = GetComponent<Animator>();
 
         currentMonsterSpeed = monsterSpeed;
         agent.speed = currentMonsterSpeed;
@@ -56,6 +59,7 @@ public class Monster : MonoBehaviour
 
     void HandleChillin()
     {
+        animator.SetBool("isRunning", false);
         if (CanSeePlayer())
         {
             currentState = MonsterStates.WalkThatBihDown;
@@ -68,6 +72,7 @@ public class Monster : MonoBehaviour
     }
     void HandleWalkThatBihDown()
     {
+        animator.SetBool("isRunning", true);
         currentMonsterSpeed = monsterSpeed;
         agent.SetDestination(player.transform.position);
 

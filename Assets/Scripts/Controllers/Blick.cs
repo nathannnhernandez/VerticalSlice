@@ -25,7 +25,10 @@ public class Blick : MonoBehaviour
     void Awake()
     {
         monster = FindObjectOfType<Monster>();
-        ammoInInventory = Inventory.Instance.ammo;
+        if (Inventory.Instance != null)
+        {
+            ammoInInventory = Inventory.Instance.ammo;
+        }
     }
 
     void Start()
