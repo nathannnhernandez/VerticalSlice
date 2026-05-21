@@ -18,9 +18,11 @@ public class Blick : MonoBehaviour
 
     [Header("Monster Slow")]
     [SerializeField] private float slowDuration = 7f;
+    [SerializeField] private float speedForTripThreshold = 5f;
     private float maxMonsterSpeed;
     private Monster monster;
     private Coroutine slowCoroutine;
+
 
     void Awake()
     {
@@ -75,7 +77,11 @@ public class Blick : MonoBehaviour
 
     void ApplySlow()
     {
-        monster.monsterSpeed = Mathf.Max(monster.monsterSpeed * 0.5f, 2f);
+        monster.monsterSpeed = Mathf.Max(monster.monsterSpeed * 0.75f, 2f);
+        if(monster.monsterSpeed <= speedForTripThreshold && monster.currentState != Monster.MonsterStates.Chillin)
+        {
+            monster.youShotMeTwin = true;
+        }
 
         if (slowCoroutine != null)
             StopCoroutine(slowCoroutine);
@@ -85,8 +91,20 @@ public class Blick : MonoBehaviour
 
     IEnumerator RestoreMonsterSpeed()
     {
-        yield return new WaitForSeconds(slowDuration);
-        monster.monsterSpeed = maxMonsterSpeed;
+
+        if (monster.youShotMeTwin == false)
+        {
+            yield return new WaitForSeconds(slowDuration);
+
+            monster.monsterSpeed = maxMonsterSpeed;  
+        }
+        else
+        {
+            yield return new WaitForSeconds(slowDuration);
+
+            monster.youShotMeTwin = false;
+            monster.monsterSpeed = maxMonsterSpeed;
+        }
     }
     /*
 

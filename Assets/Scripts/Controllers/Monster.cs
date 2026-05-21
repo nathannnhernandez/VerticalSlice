@@ -17,13 +17,14 @@ public class Monster : MonoBehaviour
     private NavMeshHit hit;
     private RaycastHit rayHit;
     private Animator animator;
-    private enum MonsterStates
+    public bool youShotMeTwin = false;
+    public enum MonsterStates
     {
         Chillin,
         WalkThatBihDown,
         Attack
     }
-    private MonsterStates currentState;
+    public MonsterStates currentState;
     void Awake()
     {
         
@@ -54,6 +55,14 @@ public class Monster : MonoBehaviour
             case MonsterStates.Attack:
                 HandleAttack();
                 break;
+        }
+        if (youShotMeTwin == true)
+        {
+            animator.SetBool("isShot", true);
+        }
+        else
+        {
+            animator.SetBool("isShot", false);
         }
     }
 
@@ -90,13 +99,20 @@ public class Monster : MonoBehaviour
     }
     void HandleAttack()
     {
+        float holdMonsterSpeed = currentMonsterSpeed;
+
         agent.ResetPath();
+
+        animator.SetTrigger("isAttacking");
+
+        currentMonsterSpeed = 1f;
 
         float distance = UnityEngine.Vector3.Distance(transform.position, player.transform.position);
 
         if (distance > 2f)
         {
             currentState = MonsterStates.WalkThatBihDown;
+            currentMonsterSpeed = holdMonsterSpeed;
         }
     }
     bool CanSeePlayer()
