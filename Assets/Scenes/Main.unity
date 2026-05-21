@@ -5318,7 +5318,7 @@ ParticleSystem:
         m_RotationOrder: 4
     randomizeRotationDirection: 0
     gravitySource: 0
-    maxNumParticles: 2000
+    maxNumParticles: 100
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -5378,15 +5378,15 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 0
+    type: 2
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 0, y: 0, z: 0}
-    m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Position: {x: -0.00000015078797, y: -0.0000000575952, z: 0.000000055889913}
+    m_Rotation: {x: 0.19397911, y: 0.000008727344, z: 0.000001809492}
+    m_Scale: {x: 1.6062137, y: 1.3042595, z: 0.032243304}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -7565,7 +7565,7 @@ ParticleSystem:
     octaves: 1
     octaveMultiplier: 0.5
     octaveScale: 2
-    quality: 1
+    quality: 2
     scrollSpeed:
       serializedVersion: 2
       minMaxState: 0
@@ -9478,9 +9478,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1994665322}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: -2.3283064e-10, z: -2.3283064e-10, w: 0.7071068}
-  m_LocalPosition: {x: -0.25311178, y: 0.72, z: 65.38187}
-  m_LocalScale: {x: 115.182045, y: 180.09389, z: 1}
+  m_LocalRotation: {x: -0.7071068, y: -4.656613e-10, z: -4.656613e-10, w: 0.7071068}
+  m_LocalPosition: {x: -0.1, y: -9, z: 68.4}
+  m_LocalScale: {x: 25.852026, y: 34.00001, z: 5.5000005}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -9498,7 +9498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 314215813}
-  fogDelay: 5
+  fogDelay: 3
 --- !u!4 &2013349123 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6698538350900016808, guid: 47a55ff4b4b269e4dabddb8c84f2bf79,
