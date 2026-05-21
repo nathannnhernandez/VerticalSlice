@@ -9,6 +9,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI healsCount;
     [SerializeField] private TextMeshProUGUI hpCount;
     [SerializeField] private TextMeshProUGUI crosshair;
+    [SerializeField] private TextMeshProUGUI textBox;
     public static UIController Instance { get; private set; }
 
     private void Awake()
@@ -37,6 +38,11 @@ public class UIController : MonoBehaviour
     {
         hpCount.text = "HP: " + currentHP.ToString();
     } 
+
+    public void UpdateTextBox(string text)
+    {
+        textBox.text = text;
+    }
 
 
 }
