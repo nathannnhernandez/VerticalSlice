@@ -6,6 +6,8 @@ public class GameController : MonoBehaviour
 {
     //singleton logic
     public static GameController Instance { get; private set; }
+    [SerializeField] private GameObject monster;
+    [SerializeField] private GameObject player;
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -18,7 +20,8 @@ public class GameController : MonoBehaviour
         DontDestroyOnLoad(gameObject); 
         monster.SetActive(true);
     }
-    [SerializeField] private GameObject monster;
+
+    [SerializeField] private GameObject fence1;
 
     private bool monsterSpawned;
     void Start()
@@ -32,6 +35,7 @@ public class GameController : MonoBehaviour
     {
         if (Inventory.Instance.ammo > 0)
         {
+            fence1.SetActive(false);
             if (monsterSpawned == false)
             {
                 monsterSpawned = true;
@@ -41,4 +45,8 @@ public class GameController : MonoBehaviour
     }
 
     //set piece 2
+
+
+
+
 }
