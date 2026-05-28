@@ -33,10 +33,9 @@ Use gameobject.setactive to put the monster in the scene, setting it to true whe
 ## Milestone 3 Devlog
 ### Shader Graph
 <img width="789" height="703" alt="image" src="https://github.com/user-attachments/assets/15b14592-c34a-4db2-929e-2b9306dab888" />
-1. My shader graph works by using a node called tiling and offset to create a vignette around the perimiter of the screen. There are a few parameters, including color is a multiplicand in a series of multiplication nodes. This series combines color, intesity, and power to control the prominance of the vignette. In unity, the shader graph is referenced through c#, changing the _ScreenIntensity parameter whenever the player takes damage.
-   
-  Side note: For some reason this works in Unity but not in the itch build, but for this milestones purposes, the vignette is in place
-   
+
+1. My shader graph works by using a node called tiling and offset to create a vignette around the perimiter of the screen. There are a few parameters, including color is a multiplicand in a series of multiplication nodes. This series combines color, intesity, and power to control the prominance of the vignette. In unity, the shader graph is referenced through c#, changing the _ScreenIntensity parameter whenever the player takes damage.   
+#### Side note: For some reason this works in Unity but not in the itch build, but for this milestones purposes, the vignette is in place
 2. I improved the gameplay of my game based on playtesting by adjusting my level to direct the player and improve sequencing. Now the player will not be able to leave the first area until they have picked up the ammo, by using a gate prefab. If the player goes left and picks up the heals before the ammo, they won't be able to leave that area until the ammo is picked up. Once the ammo is picked up, the monster will come around the corner and the player will have to escape it.
 3. Since the last milestone, I fully animated and the monster which now has multiple movement animations, and attack animation, and a stumble animation if the player shoots the monster three times consecutively. I added a fog particle effect which still needs a bit of work. I incorporated the required vfx and shader graph. I added recoil animations for the gun, and I tweaked some of the buildings within the level. 
 
