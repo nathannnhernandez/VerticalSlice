@@ -20,8 +20,10 @@ public class Ammo : Consumable
     }
     public override void Pickup()
     {
+        ammoInInventory = Inventory.Instance.ammo;
         ammoInInventory += lootQuantity;
         Inventory.Instance.ammo = ammoInInventory;
+        
         thisThing.SetActive(false);
     }
 

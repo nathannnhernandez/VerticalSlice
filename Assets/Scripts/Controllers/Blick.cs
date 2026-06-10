@@ -10,6 +10,7 @@ public class Blick : MonoBehaviour
     [Header("Gun")]
     [SerializeField] private float gunTransformMultiplier = .3f;
     private int ammoInInventory;
+    private AudioSource audioSource;
 
     [Header("Reload")]
     [SerializeField] private float reloadTime = 3f;
@@ -37,6 +38,8 @@ public class Blick : MonoBehaviour
     {
         UIController.Instance.UpdateAmmoCount(ammoInInventory);
         maxMonsterSpeed = monster.monsterSpeed;
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -50,7 +53,11 @@ public class Blick : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse1) && Input.GetKeyDown(KeyCode.Mouse0))
         {
             if (ammoInInventory > 0)
+            {
                 Shoot();
+                audioSource.Play();
+            }
+
         }
         UIController.Instance.UpdateAmmoCount(ammoInInventory);
     }

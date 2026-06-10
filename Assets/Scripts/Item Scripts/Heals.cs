@@ -18,10 +18,9 @@ public class Heals : Consumable
     }
     public override void Pickup()
     {
+        healsInInventory = Inventory.Instance.heals;
         healsInInventory += 1;
         Inventory.Instance.heals = healsInInventory;
-
-        UIController.Instance.UpdateHealsCount(healsInInventory);
 
         thisThing.SetActive(false);
     }

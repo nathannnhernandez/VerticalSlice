@@ -32,4 +32,9 @@ public class Inventory : MonoBehaviour
         ammo = 0;
         heals = 0;
     }
+    void Update()
+    {
+        UIController.Instance.UpdateAmmoCount(ammo);
+        UIController.Instance.UpdateHealsCount(heals);
+    }
 }

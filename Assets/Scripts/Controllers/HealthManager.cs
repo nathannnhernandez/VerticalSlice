@@ -23,8 +23,6 @@ public class HealthManager : MonoBehaviour
 
         healsInInventory = Inventory.Instance.heals; 
 
-        bloodVignette.SetFloat("_ScreenIntesity", 0f);
-
         bloodVignette.SetColor("_Color", Color.red);
     }
     private void OnCollisionEnter(Collision other)
@@ -32,18 +30,13 @@ public class HealthManager : MonoBehaviour
         if (other.gameObject == monster && invulnerable == false)
         {
             StartCoroutine(IFrames(iFramesLength));
-        
-            hp -= 1;
+            if (hp > 0)
+            {
+                hp -= 1; 
+            }
             UIController.Instance.UpdateHPCount(hp);
 
-            if (hp == 2)
-            {
-                bloodVignette.SetFloat("_ScreenIntesity", 0.5f);
-            }
-            else if (hp == 1)
-            {
-                bloodVignette.SetFloat("_ScreenIntesity", 0.75f);
-            }
+            StartCoroutine(VisualDamage());
         }
     }
     void Update()
@@ -79,13 +72,19 @@ public class HealthManager : MonoBehaviour
 
     private IEnumerator VisualDamage()
     {
-        yield return new WaitForSeconds(0.5f);  
-        bloodVignette.SetFloat("_ScreenIntesity", 0.5f);
+        bloodVignette.SetFloat("_ScreenIntensity", 0.75f);
+        bloodVignette.SetFloat("_ScreenPower", 3f);
 
-        yield return new WaitForSeconds(0.5f);
-        bloodVignette.SetFloat("_ScreenIntesity", 0.25f);
+        yield return new WaitForSeconds(1f);
+        bloodVignette.SetFloat("_ScreenIntensity", 0.5f);
+        bloodVignette.SetFloat("_ScreenPower", 2f);
 
-        yield return new WaitForSeconds(0.5f);
-        bloodVignette.SetFloat("_ScreenIntesity", 0.0f);
+        yield return new WaitForSeconds(1f);
+        bloodVignette.SetFloat("_ScreenIntensity", 0.25f);
+        bloodVignette.SetFloat("_ScreenPower", 1f);
+
+        yield return new WaitForSeconds(1f);
+        bloodVignette.SetFloat("_ScreenIntensity", 0f);
+        bloodVignette.SetFloat("_ScreenPower", 0f);
     }
 }
