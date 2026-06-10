@@ -19,7 +19,7 @@ public class Blick : MonoBehaviour
 
     [Header("Monster Slow")]
     [SerializeField] private float slowDuration = 7f;
-    [SerializeField] private float speedForTripThreshold = 5f;
+    [SerializeField] private float speedForTripThreshold = 6f;
     private float maxMonsterSpeed;
     private Monster monster;
     private Coroutine slowCoroutine;

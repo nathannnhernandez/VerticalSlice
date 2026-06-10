@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour
     }
     private GameState currentGameState;
 
+    [Header("General")]
     [SerializeField] private GameObject monster;
     [SerializeField] private GameObject player;
     [SerializeField] private AudioSource audioSource;
@@ -32,6 +33,7 @@ public class GameController : MonoBehaviour
         monster.SetActive(true);
     }
 
+    [Header("Set Piece 1")]
     [SerializeField] private GameObject fence1;
     [SerializeField] private GameObject checkPoint1;
 
@@ -71,6 +73,9 @@ public class GameController : MonoBehaviour
                 monster.transform.position = new Vector3(28.1573f, 4.988858f, -67.64584f);
                 monsterSpawned = true;
                 monster.SetActive(true);
+
+                fence1.SetActive(true);
+                fence2.SetActive(false);
             }
         }
 
@@ -86,7 +91,12 @@ public class GameController : MonoBehaviour
         }
         else if (checkPoint2 == null && currentGameState == GameState.gameState2)
         {
-            
+            monster.SetActive(false);
+            monsterSpawned = false;
+
+            audioSource.Play();
+
+            currentGameState = GameState.gameState3;
         }
         else if (checkPoint3 == null && currentGameState == GameState.gameState2)
         {
@@ -95,9 +105,12 @@ public class GameController : MonoBehaviour
     
     }
     //set piece 2
+    [Header("Set Piece 2")]
     [SerializeField] private GameObject checkPoint2;
     [SerializeField] private GameObject setPiece2Trigger;
+    [SerializeField] private GameObject fence2;
 
     //set piece 3
+    [Header("Set Piece 3")]
     [SerializeField] private GameObject checkPoint3;
 }
