@@ -58,14 +58,13 @@ public class HealthManager : MonoBehaviour
 
     private void UseHeals()
     {
-        if(healsInInventory > 0 && hp < 3)
+        if(Inventory.Instance.heals > 0 && hp < 3)
         {
             hp += 1;
-            healsInInventory -= 1;
+            Inventory.Instance.heals -= 1;
 
             StartCoroutine(VisualDamage());
             
-            UIController.Instance.UpdateHealsCount(healsInInventory);
             UIController.Instance.UpdateHPCount(hp);
         }
     }

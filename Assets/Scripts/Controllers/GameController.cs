@@ -64,6 +64,16 @@ public class GameController : MonoBehaviour
             }
         }
 
+        if (setPiece2Trigger.activeInHierarchy == false && currentGameState == GameState.gameState2)
+        {
+            if (monsterSpawned == false)
+            {
+                monster.transform.position = new Vector3(28.1573f, 4.988858f, -67.64584f);
+                monsterSpawned = true;
+                monster.SetActive(true);
+            }
+        }
+
         //checkpoints
         if (checkPoint1 == null && currentGameState == GameState.gameState1)
         {
@@ -78,8 +88,16 @@ public class GameController : MonoBehaviour
         {
             
         }
+        else if (checkPoint3 == null && currentGameState == GameState.gameState2)
+        {
+            
+        }
     
     }
     //set piece 2
     [SerializeField] private GameObject checkPoint2;
+    [SerializeField] private GameObject setPiece2Trigger;
+
+    //set piece 3
+    [SerializeField] private GameObject checkPoint3;
 }

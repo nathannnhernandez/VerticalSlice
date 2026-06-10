@@ -6,34 +6,25 @@ using UnityEngine;
 public class Heals : Consumable
 {
     [SerializeField] private GameObject thisThing;
-    private int healsInInventory;
     private HealthManager healthManager;
     void Start()
     {
-        healsInInventory = Inventory.Instance.heals;
-
         healthManager = FindObjectOfType<HealthManager>();
-
-        UIController.Instance.UpdateHealsCount(healsInInventory);
     }
     public override void Pickup()
     {
-        healsInInventory = Inventory.Instance.heals;
-        healsInInventory += 1;
-        Inventory.Instance.heals = healsInInventory;
+        Inventory.Instance.heals += 1;
 
         thisThing.SetActive(false);
     }
 
     public override void Use()
     {
-        if (healsInInventory > 0 && healthManager.hp < 3)
+        if (Inventory.Instance.heals > 0 && healthManager.hp < 3)
         {
             healthManager.hp += 1;
-            healsInInventory -= 1;
-            Inventory.Instance.heals = healsInInventory;
+            Inventory.Instance.heals -= 1;
 
-            UIController.Instance.UpdateHealsCount(healsInInventory);
             UIController.Instance.UpdateHPCount(healthManager.hp);
         }
     }
