@@ -2,17 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Keys : MonoBehaviour
+public class Keys : Consumable
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject thisThing;
+    public override void Pickup()
     {
-        
+        StartCoroutine(KeyText());
+
+
+        Inventory.Instance.keys += 1;
+
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator KeyText()
     {
+        UIController.Instance.UpdateTextBox("Keys + 1");
+
+        yield return new WaitForSeconds(3);
+
+        UIController.Instance.UpdateTextBox("");
         
+        thisThing.SetActive(false);
+
+
     }
 }

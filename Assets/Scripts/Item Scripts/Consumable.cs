@@ -13,7 +13,7 @@ public class Consumable : MonoBehaviour
     public enum ItemType
     {
         Ammunition,
-        Flashlight,
+        Key,
         Heals,
         Lore
     }

@@ -70,7 +70,7 @@ public class GameController : MonoBehaviour
         {
             if (monsterSpawned == false)
             {
-                monster.transform.position = new Vector3(28.1573f, 4.988858f, -67.64584f);
+                monster.transform.position = new Vector3(8f, 4.988858f, -80f);
                 monsterSpawned = true;
                 monster.SetActive(true);
 
@@ -102,6 +102,25 @@ public class GameController : MonoBehaviour
         {
             
         }
+
+        if (currentGameState == GameState.gameState3 && finalSequenceTrigger.activeInHierarchy == false)
+        {
+            if (monsterSpawned == false)
+            {
+                            monster.transform.position = new Vector3(-154.3974f, 4.988858f, 6.37238f);
+            monster.SetActive(true);
+            monsterSpawned = true;
+
+                        audioSource.Play();
+
+            }
+
+            
+        }
+        if (currentGameState == GameState.gameState3 && Inventory.Instance.keys > 0)
+        {
+            fence3.SetActive(false);
+        }
     
     }
     //set piece 2
@@ -113,4 +132,6 @@ public class GameController : MonoBehaviour
     //set piece 3
     [Header("Set Piece 3")]
     [SerializeField] private GameObject checkPoint3;
+    [SerializeField] private GameObject fence3;
+    [SerializeField] private GameObject finalSequenceTrigger;
 }
