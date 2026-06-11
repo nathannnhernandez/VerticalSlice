@@ -40,11 +40,11 @@ Use gameobject.setactive to put the monster in the scene, setting it to true whe
 3. Since the last milestone, I fully animated and the monster which now has multiple movement animations, and attack animation, and a stumble animation if the player shoots the monster three times consecutively. I added a fog particle effect which still needs a bit of work. I incorporated the required vfx and shader graph. I added recoil animations for the gun, and I tweaked some of the buildings within the level.
 
 ## Final Submission Devlog
-Question 1
+### Question 1
 The core gameplay loop of Hidden in Heaven involves obtaining resources to help fend off an invasive and foreign robotic creature. The player will collect ammo to slow down the monster, find heals to manage HP, and find notes with lazy writing that explain some of the lore of the world. The player will also trigger certain set pieces that replicate some of the scripted sequences found in horror games or single player experiences in general. This gameplay and content illustrates what a full game would look like by using common survival horror tropes such as resource management, along with curated set pieces, to create exciting sequences throughout a full-length experience. During downtime, players will feel the pressure to stock up on resources in order to be able to handle the upcoming challenges.
 
 
-Question 2
+### Question 2
 <img width="950" height="470" alt="Screenshot 2026-06-11 104018" src="https://github.com/user-attachments/assets/35beecfd-b96c-4423-9337-b5b0338fee1f" />
 <img width="878" height="582" alt="Screenshot 2026-06-11 104041" src="https://github.com/user-attachments/assets/7285ca44-c3df-4320-96b0-987db22b86bc" />
 <img width="1564" height="941" alt="Screenshot 2026-06-11 104157" src="https://github.com/user-attachments/assets/22e89882-0c0d-49f2-b609-b297fa56dd69" />
@@ -52,8 +52,8 @@ Question 2
 In unity, my rendering effect is applied whenever the player takes damage. Whenever the player takes damage, a coroutine starts that sets the intensity and power properties of the effect to 0.75, before decreasing it back down to zero over time. Because I use a multiply node, when the value of intensity is 0, the vignette is active (in unity), and as the intensity increases, the more prominent the blood effect is.
 
 
-Question 3
-My Plan
+### Question 3
+#### My Plan
 Brainstorm a unique idea (something has to set it apart, it can’t just be my version of another game)
 Find what mechanics will make this game fun or contribute to the artistic theme and meaning (can be just one or both)
 Breakdown these mechanics into systems using a bubble diagram with technical terms
