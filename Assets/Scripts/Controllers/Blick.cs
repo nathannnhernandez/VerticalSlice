@@ -24,7 +24,6 @@ public class Blick : MonoBehaviour
     private Monster monster;
     private Coroutine slowCoroutine;
 
-
     void Awake()
     {
         monster = FindObjectOfType<Monster>();
@@ -44,6 +43,7 @@ public class Blick : MonoBehaviour
 
     void Update()
     {
+        monster = FindObjectOfType<Monster>();
         ammoInInventory = Inventory.Instance.ammo;
         /*if (isReloading) return;
 
@@ -71,7 +71,7 @@ public class Blick : MonoBehaviour
         {
             Debug.Log(hit.transform.name);
 
-            if (hit.transform.TryGetComponent(out Monster hitMonster))
+            if (hit.transform.gameObject == monster.gameObject)
             {
                 ApplySlow();
             }
@@ -84,7 +84,7 @@ public class Blick : MonoBehaviour
 
     void ApplySlow()
     {
-        monster.monsterSpeed = Mathf.Max(monster.monsterSpeed * 0.75f, 2f);
+        monster.monsterSpeed -= 3;
         if(monster.monsterSpeed <= speedForTripThreshold && monster.currentState != Monster.MonsterStates.Chillin)
         {
             monster.youShotMeTwin = true;

@@ -21,6 +21,9 @@ public class CheckPointController : MonoBehaviour
     {
         if (other.gameObject == player)
         {
+            GameController.Instance.RespawnPos = gameObject.transform.position;
+            Debug.Log(GameController.Instance.RespawnPos);
+            
             Destroy(gameObject);
         }
     }

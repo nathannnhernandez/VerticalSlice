@@ -12,12 +12,14 @@ public class Monster : MonoBehaviour
     [SerializeField] private LayerMask mask;
     [SerializeField] private float roamRange = 50f;
     [SerializeField] private float roamSpeedDividend = 2f;
+    [SerializeField] private float maxDistanceFromPlayer = 30f;
     public float monsterSpeed = 10f;
     private float currentMonsterSpeed;
     private NavMeshHit hit;
     private RaycastHit rayHit;
     private Animator animator;
     public bool youShotMeTwin = false;
+    float distanceFromPlayer;
     public enum MonsterStates
     {
         Chillin,
@@ -43,6 +45,12 @@ public class Monster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        distanceFromPlayer = Vector3.Distance(player.transform.position, gameObject.transform.position);
+        Debug.Log(distanceFromPlayer);
+        if (distanceFromPlayer > maxDistanceFromPlayer)
+        {
+            currentState = MonsterStates.WalkThatBihDown;
+        }
         agent.speed = currentMonsterSpeed;
         switch (currentState)
         {
@@ -87,7 +95,7 @@ public class Monster : MonoBehaviour
 
         float distance = UnityEngine.Vector3.Distance(transform.position, player.transform.position);
 
-        if (!CanSeePlayer())
+        if (!CanSeePlayer() && distanceFromPlayer < maxDistanceFromPlayer)
         {
             currentState = MonsterStates.Chillin;
         }

@@ -15,6 +15,8 @@ public class GameController : MonoBehaviour
         gameState4
     }
     private GameState currentGameState;
+    public Vector3 RespawnPos;
+    public int deaths = 0;
 
     [Header("General")]
     [SerializeField] private GameObject monster;
@@ -41,6 +43,8 @@ public class GameController : MonoBehaviour
     void Start()
     {
         currentGameState = GameState.gameState1;
+
+        RespawnPos = player.transform.position;
 
         monsterSpawned = false;
         monster.SetActive(false);
@@ -100,18 +104,17 @@ public class GameController : MonoBehaviour
         }
         else if (checkPoint3 == null && currentGameState == GameState.gameState2)
         {
-            
         }
 
         if (currentGameState == GameState.gameState3 && finalSequenceTrigger.activeInHierarchy == false)
         {
             if (monsterSpawned == false)
             {
-                            monster.transform.position = new Vector3(-154.3974f, 4.988858f, 6.37238f);
-            monster.SetActive(true);
-            monsterSpawned = true;
+                monster.transform.position = new Vector3(-154.3974f, 4.988858f, 6.37238f);
+                monster.SetActive(true);
+                monsterSpawned = true;
 
-                        audioSource.Play();
+                audioSource.Play();
 
             }
 

@@ -46,6 +46,20 @@ public class HealthManager : MonoBehaviour
         {
             UseHeals();
         }
+        if (hp <= 0)
+        {
+            hp = 3;
+            UIController.Instance.UpdateHPCount(hp);
+
+            GameController.Instance.deaths += 1;
+
+            if (Inventory.Instance.ammo < 3)
+            {
+                Inventory.Instance.ammo = 3;
+            }
+
+            transform.position = GameController.Instance.RespawnPos;
+        }
     }
     IEnumerator IFrames(float delay)
     {
