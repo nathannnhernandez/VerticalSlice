@@ -22,7 +22,7 @@ public class GameEnd : MonoBehaviour
             monster = FindObjectOfType<Monster>();
             if (monster != null)
             {
-                monster.monsterSpeed = 0;
+                monster.currentMonsterSpeed = 0;
             }
 
             UIController.Instance.UpdateTextBox("Demo cleared! Deaths: " + GameController.Instance.deaths);

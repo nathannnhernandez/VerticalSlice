@@ -20,7 +20,6 @@ public class Blick : MonoBehaviour
     [Header("Monster Slow")]
     [SerializeField] private float slowDuration = 7f;
     [SerializeField] private float speedForTripThreshold = 6f;
-    private float maxMonsterSpeed;
     private Monster monster;
     private Coroutine slowCoroutine;
 
@@ -36,7 +35,6 @@ public class Blick : MonoBehaviour
     void Start()
     {
         UIController.Instance.UpdateAmmoCount(ammoInInventory);
-        maxMonsterSpeed = monster.monsterSpeed;
 
         audioSource = GetComponent<AudioSource>();
     }
@@ -62,26 +60,23 @@ public class Blick : MonoBehaviour
         UIController.Instance.UpdateAmmoCount(ammoInInventory);
     }
 
-    void Shoot()
+void Shoot()
+{
+    Inventory.Instance.ammo -= 1;
+    StartCoroutine(Recoil());
+
+    if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out RaycastHit hit, range))
     {
-        Inventory.Instance.ammo -= 1;
-        StartCoroutine(Recoil());
+        Monster hitMonster = hit.transform.GetComponent<Monster>();
 
-        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out RaycastHit hit, range))
-        {
-            Debug.Log(hit.transform.name);
-
-            if (hit.transform.gameObject == monster.gameObject)
+            if (hitMonster != null)
             {
-                ApplySlow();
+                hitMonster.ApplySlow();
             }
-
-        }
-
-       /* if (ammoInInventory <= 0)
-            StartCoroutine(Reload());*/
     }
+}
 
+/*
     void ApplySlow()
     {
         monster.monsterSpeed -= 3;
@@ -95,6 +90,7 @@ public class Blick : MonoBehaviour
 
         slowCoroutine = StartCoroutine(RestoreMonsterSpeed());
     }
+    
 
     IEnumerator RestoreMonsterSpeed()
     {
@@ -113,7 +109,7 @@ public class Blick : MonoBehaviour
             monster.monsterSpeed = maxMonsterSpeed;
         }
     }
-    /*
+    
 
     IEnumerator Reload()
     {

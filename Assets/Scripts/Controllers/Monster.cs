@@ -11,15 +11,17 @@ public class Monster : MonoBehaviour
    // [SerializeField] private float viewAngle = 120f;
     [SerializeField] private LayerMask mask;
     [SerializeField] private float roamRange = 50f;
-    [SerializeField] private float roamSpeedDividend = 2f;
     [SerializeField] private float maxDistanceFromPlayer = 30f;
-    public float monsterSpeed = 10f;
-    private float currentMonsterSpeed;
+    public float currentMonsterSpeed;
     private NavMeshHit hit;
     private RaycastHit rayHit;
     private Animator animator;
     public bool youShotMeTwin = false;
     float distanceFromPlayer;
+    public float maxSpeed = 14f;
+    public float slowAmount = 3f;
+    public float slowDuration = 7f;
+    private bool hasBeenShot = false;
     public enum MonsterStates
     {
         Chillin,
@@ -38,20 +40,24 @@ public class Monster : MonoBehaviour
 
         animator = GetComponent<Animator>();
 
-        currentMonsterSpeed = monsterSpeed;
+        currentMonsterSpeed = maxSpeed;
         agent.speed = currentMonsterSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
+        agent.speed = currentMonsterSpeed;
         distanceFromPlayer = Vector3.Distance(player.transform.position, gameObject.transform.position);
         Debug.Log(distanceFromPlayer);
         if (distanceFromPlayer > maxDistanceFromPlayer)
         {
             currentState = MonsterStates.WalkThatBihDown;
         }
-        agent.speed = currentMonsterSpeed;
+        if (hasBeenShot == false)
+        {
+            currentMonsterSpeed = maxSpeed;
+        }
         switch (currentState)
         {
             case MonsterStates.Chillin:
@@ -90,7 +96,6 @@ public class Monster : MonoBehaviour
     void HandleWalkThatBihDown()
     {
         animator.SetBool("isRunning", true);
-        currentMonsterSpeed = monsterSpeed;
         agent.SetDestination(player.transform.position);
 
         float distance = UnityEngine.Vector3.Distance(transform.position, player.transform.position);
@@ -98,6 +103,16 @@ public class Monster : MonoBehaviour
         if (!CanSeePlayer() && distanceFromPlayer < maxDistanceFromPlayer)
         {
             currentState = MonsterStates.Chillin;
+        }
+        else if (distanceFromPlayer > maxDistanceFromPlayer)
+        {
+            currentState = MonsterStates.WalkThatBihDown;
+            currentMonsterSpeed = 1000f;
+            hasBeenShot = false;
+        }
+        else if (distanceFromPlayer < maxDistanceFromPlayer && currentState == MonsterStates.WalkThatBihDown && hasBeenShot == false)
+        {
+            currentMonsterSpeed = maxSpeed;
         }
         else if (distance < 2f) // attack range
         {
@@ -154,7 +169,6 @@ public class Monster : MonoBehaviour
     }
     void Roam()
     {
-        currentMonsterSpeed /= roamSpeedDividend;
         UnityEngine.Vector3 randomPos = transform.position + UnityEngine.Random.insideUnitSphere * roamRange;
         if (NavMesh.SamplePosition(randomPos, out hit, roamRange, NavMesh.AllAreas))
         {
@@ -162,4 +176,32 @@ public class Monster : MonoBehaviour
         }
     }
 
+
+    private Coroutine slowRoutine;
+
+    public void ApplySlow()
+    {
+        hasBeenShot = true;
+        // Apply slow to the actual movement speed
+        currentMonsterSpeed = Mathf.Max(currentMonsterSpeed - slowAmount, 1f);
+        if (currentMonsterSpeed <= maxSpeed * 0.5)
+        {
+            youShotMeTwin = true;
+        }
+
+        if (slowRoutine != null)
+            StopCoroutine(slowRoutine);
+
+        slowRoutine = StartCoroutine(RestoreSpeed());
+    }
+
+    private IEnumerator RestoreSpeed()
+    {
+
+        yield return new WaitForSeconds(slowDuration);
+
+        youShotMeTwin = false;
+        currentMonsterSpeed = maxSpeed;
+        hasBeenShot = false;
+    }
 }

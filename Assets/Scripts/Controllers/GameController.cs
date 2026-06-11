@@ -110,7 +110,7 @@ public class GameController : MonoBehaviour
         {
             if (monsterSpawned == false)
             {
-                monster.transform.position = new Vector3(-154.3974f, 4.988858f, 6.37238f);
+                monster.transform.position = new Vector3(-154.3974f, 4.988858f, -52f);
                 monster.SetActive(true);
                 monsterSpawned = true;
 
