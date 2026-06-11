@@ -60,6 +60,10 @@ public class HealthManager : MonoBehaviour
 
             transform.position = GameController.Instance.RespawnPos;
         }
+        if (hp == maxHP)
+        {
+            bloodVignette.SetFloat("_ScreenIntensity", 0f);
+        }
     }
     IEnumerator IFrames(float delay)
     {
