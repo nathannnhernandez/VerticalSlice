@@ -107,7 +107,6 @@ public class Monster : MonoBehaviour
         else if (distanceFromPlayer > maxDistanceFromPlayer)
         {
             currentState = MonsterStates.WalkThatBihDown;
-            currentMonsterSpeed = 1000f;
             hasBeenShot = false;
         }
         else if (distanceFromPlayer < maxDistanceFromPlayer && currentState == MonsterStates.WalkThatBihDown && hasBeenShot == false)
@@ -184,7 +183,7 @@ public class Monster : MonoBehaviour
         hasBeenShot = true;
         // Apply slow to the actual movement speed
         currentMonsterSpeed = Mathf.Max(currentMonsterSpeed - slowAmount, 1f);
-        if (currentMonsterSpeed <= maxSpeed * 0.5)
+        if (currentMonsterSpeed <= maxSpeed * 0.5 && currentState != MonsterStates.Attack)
         {
             youShotMeTwin = true;
         }
