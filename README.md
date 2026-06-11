@@ -49,7 +49,7 @@ The core gameplay loop of Hidden in Heaven involves obtaining resources to help 
 <img width="878" height="582" alt="Screenshot 2026-06-11 104041" src="https://github.com/user-attachments/assets/7285ca44-c3df-4320-96b0-987db22b86bc" />
 <img width="1564" height="941" alt="Screenshot 2026-06-11 104157" src="https://github.com/user-attachments/assets/22e89882-0c0d-49f2-b609-b297fa56dd69" />
 
-In unity, my rendering effect is applied whenever the player takes damage. Whenever the player takes damage, a coroutine starts that sets the intensity and power properties of the effect to 0.75, before decreasing it back down to zero over time. Because I use a multiply node, when the value of intensity is 0, the vignette is active (in unity), and as the intensity increases, the more prominent the blood effect is.
+In unity, my rendering effect is applied whenever the player takes damage. Whenever the player takes damage, a coroutine starts that sets the intensity and power properties of the effect to 0.75, before decreasing it back down to zero over time. Because I use a multiply node, when the value of intensity is 0, the vignette is not active (in unity), and as the intensity increases, the more prominent the blood effect is.
 
 
 ### Question 3
