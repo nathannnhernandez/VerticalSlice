@@ -55,13 +55,22 @@ In unity, my rendering effect is applied whenever the player takes damage. Whene
 ### Question 3
 #### My Plan
 Brainstorm a unique idea (something has to set it apart, it can’t just be my version of another game)
+
 Find what mechanics will make this game fun or contribute to the artistic theme and meaning (can be just one or both)
+
 Breakdown these mechanics into systems using a bubble diagram with technical terms
+
 Check these systems for scalability, optimize time and effort by ensuring that each system once made can be easily re-implemented
+
 First focus on core systems, health, combat, etc
+
 Second playtest for enjoyability, choose people both in and out of your target audience, understand that, regarding criticism, 1: your game can be bad or 2: they just don’t get what you’re trying to do
+
 Third focus on level design, create intentionally intuitive or unintuitive levels to invoke the intended emotions within the player. Be very particular with sightlines, item placement, enemy placement, etc. This is where scalability becomes super helpful, because now I can use my core systems and mold them to fit the aesthetic of a level
+
 Fourth playtest again, this time focusing on level design, do players consistently behave the same way and is it in the way you intend them to.
+
+#### Final Points
 When trying to break down a project into specific systems I think about scalability. I would use the bubble diagram breakdowns and note which systems can be turned into a singleton, or will be a parent/child to another system, in order to create a quality foundation, not just in content, but to be built upon later in development. In Hidden in Heaven, I found that using singletons was very helpful for my GameController and my Inventory systems. I was able to easily access these instances from any script, which made the resource management system simple to implement, and creating set pieces very versatile. By breaking down these two systems using a bubble chart, I was able to identify that using a singleton would be the best plan of action, in order to connect all of the game’s other systems back to them. By breaking down my project into smaller pieces I can better understand the scope of my project because I have recognized how time consuming game design is. Throughout this year we would spend an entire week learning and implementing a system into a minigame. By breaking down my game using a bubble diagram, I could point to each of those systems and recognize that each acted like a minigame assignment that I would have to complete in order to finish this vertical slice. With this in mind, and not wanting to make ten minigames, I was able to properly scale my vertical slice. 
 
 
